@@ -1,54 +1,46 @@
-#include "BluetoothSerial.h"
+# include "BluetoothSerial.h"
 
-BluetoothSerial SerialBT;
-string gelenVeri;
+BluetoothSerial Serial_bt;
 
-void setup() {
-  // Seri iletişimi başlat
-  Serial.begin(115200);
-  SerialBT.begin("DeneyapKart"); // Bluetooth cihaz adı
-  Serial.println("Bluetooth başlatıldı, bağlanmayı bekliyor...");
+int red_pin = 11, yellow_pin = 12, green_pin = 13;
+int data;
+
+void setup(){
+  pinMode(red_pin, OUTPUT);
+  pinMode(yellow_pin, OUTPUT);
+  pinMode(green_pin, OUTPUT);
+  
+  digitalWrite(red_pin, LOW);
+  digitalWrite(yellow_pin, LOW);
+  digitalWrite(green_pin, LOW);
+
+  Serial.begin(9600);
+  if (!Serial_bt.begin("Esp32")){
+    Serial.println("Bluetooth aktif değil ....");
+    while(1);
+  }
+  Serial.println("Bluetooth aktifleşti ....");
+
 }
 
+void loop(){
+    data = Serial_bt.read();
+    Serial.print("Data:");
+    Serial.println((char)data );
+    Serial.println("Bluetooth çalışıyor ....");
+  // Yukarı yönlü 
+  if (data == 'F'){
+    digitalWrite(red_pin, HIGH);
+    Serial.println("İleri gidiyor ....");
 
-
-void loop() {
-  // Eğer Bluetooth üzerinden veri gelirse bu bloğa girer
-  if (SerialBT.available()) {
-    char command = Serial.read();
-    executeCommand(gelenVeri);
-    String gelenVeri = SerialBT.readString(); // Gelen veriyi oku
-    Serial.print("Gelen veri: ");
-    Serial.println(gelenVeri); // Seri monitörde göster
   }
-
-  void executeCommand(char command)
-  switch (command){
-    case 'FORWARD':
-      digitalWrite(D1, HIGH);
-      digitalWrite(D4, HIGH);
-      digitalWrite(D7, HIGH);
-      digitalWrite(D10,HIGH);
-      Serial.println("Go Forward")
-      break;
-    case 'START':
-      break;
-    case 'PAUSE':
-      digitalWrite(D1,LOW);
-      digitalWrite(D4,LOW);
-      digitalWrite(D7,LOW);
-      digitalWrite(D10,LOW);
-      Serial.println("PAUSED");
-      break;
-    default:
-      Serial.println("İNvalid command recived")
-      break;
+  if (data == 'B'){
+    digitalWrite(yellow_pin, HIGH);
+    Serial.println("Geriye gidiyor ....");
+  }
+  if (data == 'R'){
+    digitalWrite(green_pin, HIGH);
+    Serial.println("Sağa gidiyor ....");
   }
   
-  
-  
-  // Seri monitörden gelen veri Bluetooth üzerinden gönderilir
-  if (Serial.available()) {
-    SerialBT.write(Serial.read());
-  }
 }
