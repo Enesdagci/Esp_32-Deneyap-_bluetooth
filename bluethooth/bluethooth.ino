@@ -1,46 +1,73 @@
-# include "BluetoothSerial.h"
+#include "BluetoothSerial.h"
+BluetoothSerial Serial_BT;
 
-BluetoothSerial Serial_bt;
-
-int red_pin = 11, yellow_pin = 12, green_pin = 13;
-int data;
-
+int data,d1 = 30,d4 = 27,d7 = 24,d10 = 21;
 void setup(){
-  pinMode(red_pin, OUTPUT);
-  pinMode(yellow_pin, OUTPUT);
-  pinMode(green_pin, OUTPUT);
-  
-  digitalWrite(red_pin, LOW);
-  digitalWrite(yellow_pin, LOW);
-  digitalWrite(green_pin, LOW);
+  //Pinlerin hazılanması ve yazdırılması
+  pinMode(d1,OUTPUT);
+  digitalWrite(d1,LOW);
 
+  pinMode(d4,OUTPUT);
+  digitalWrite(d4,LOW);
+
+  pinMode(d7,OUTPUT);
+  digitalWrite(d7,LOW);
+  
+  pinMode(d10, OUTPUT);
+  digitalWrite(d10, LOW);
+
+  // Seri monitörün ayarlanması
   Serial.begin(9600);
-  if (!Serial_bt.begin("Esp32")){
-    Serial.println("Bluetooth aktif değil ....");
+  if (!Serial_BT.begin("Esp32")){
+    Serial.println("Hatalı bağlantı ....");
     while(1);
   }
-  Serial.println("Bluetooth aktifleşti ....");
+  Serial.println("Bluetooth hazırlanıyor ....");
 
 }
 
 void loop(){
-    data = Serial_bt.read();
-    Serial.print("Data:");
-    Serial.println((char)data );
-    Serial.println("Bluetooth çalışıyor ....");
-  // Yukarı yönlü 
-  if (data == 'F'){
-    digitalWrite(red_pin, HIGH);
-    Serial.println("İleri gidiyor ....");
 
+  // Bluetooth bağlantısının kontrolü
+  if (Serial_BT.available()){
+    Serial.println("Bluetooht bağlı ....");
+
+    // Bluetooth dan gelen verinin okunması
+    data = Serial_BT.read();
+    Serial.print("Data: ");
+    Serial.println(data);
+
+    // İleri yönlü 
+    if (data == 'F'){
+      digitalWrite(d1, HIGH);
+      digitalWrite(d4, HIGH);
+      digitalWrite(d7, HIGH);
+      digitalWrite(d10, HIGH);
+      Serial.println("İleri gidiyor ....");
+    }
+      // Geri yönlü
+    if (data == 'B'){
+      digitalWrite(d1, HIGH);
+      digitalWrite(d4, LOW);
+      digitalWrite(d7,LOW);
+      digitalWrite(d10, LOW);
+      Serial.println("Geri gidiyor ....");
+    }
+      // Sağ yönlü
+    if (data == 'R'){
+      digitalWrite(d1,HIGH);
+      digitalWrite(d4,HIGH);
+      digitalWrite(d7,LOW);
+      digitalWrite(d10,LOW);
+      Serial.println("Sağa gidiyor ....");
+    }
+      // Durdurma
+    if (data == '0'){
+      digitalWrite(d1,LOW);
+      digitalWrite(d4, LOW);
+      digitalWrite(d7, LOW);
+      digitalWrite(d10, LOW);
+      Serial.println("Durdu ....");
+    }
   }
-  if (data == 'B'){
-    digitalWrite(yellow_pin, HIGH);
-    Serial.println("Geriye gidiyor ....");
-  }
-  if (data == 'R'){
-    digitalWrite(green_pin, HIGH);
-    Serial.println("Sağa gidiyor ....");
-  }
-  
 }
