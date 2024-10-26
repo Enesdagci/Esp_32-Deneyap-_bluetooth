@@ -41,12 +41,6 @@ void loop(){
       digitalWrite(ENA, HIGH);
       Serial.println("Geriye gidiyor ....");
     }
-    if (data == 'R'){
-      digitalWrite(IN1, LOW);
-      digitalWrite(IN2, HIGH);
-      digitalWrite(ENA, HIGH);
-      Serial.println("Sağa Doğru gidiyor ....");
-    }
     if (data == '0'){
       digitalWrite(IN1, LOW);
       digitalWrite(IN2, LOW);
