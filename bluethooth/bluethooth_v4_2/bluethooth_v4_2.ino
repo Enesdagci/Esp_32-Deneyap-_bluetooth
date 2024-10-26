@@ -15,7 +15,6 @@ void setup(){
   digitalWrite(IN1, LOW);   
   digitalWrite(IN2, LOW);
 
-
   // Ekrana yazdırma ile bluetooth aktifliğini kontrolü
   Serial.begin(9600);
   if (!Serial_BT.begin("Hamal")){
