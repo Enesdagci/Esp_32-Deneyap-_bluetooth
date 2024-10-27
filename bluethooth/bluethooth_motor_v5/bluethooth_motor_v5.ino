@@ -181,6 +181,7 @@ void loop() {
       digitalWrite(LPWM_4, HIGH);
       digitalWrite(RPWM_4, LOW);
     }
+    
     // Sola gitme
     if (data == 'C'){
       // MOTOR - 1
