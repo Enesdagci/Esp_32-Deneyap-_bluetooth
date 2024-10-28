@@ -23,269 +23,237 @@ BluetoothSerial Serial_BT;
 
 int data;
 void setup() {
+  // Pinlerin tanumlanması ve başlangıç için hazırlık
   // Motor - 1
-  pinMode(PWM_1, OUTPUT);
-  pinMode(LPWM_1, OUTPUT);
-  pinMode(RPWM_1, OUTPUT);
-
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, LOW);
-  digitalWrite(RPWM_1, LOW);
+  pin_outputs(PWM_1, LPWM_1, RPWM_1);
+  movement_setup(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  pinMode(PWM_2, OUTPUT);
-  pinMode(LPWM_2, OUTPUT);
-  pinMode(RPWM_2, OUTPUT);
-
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, LOW);
-  digitalWrite(RPWM_2, LOW);
+  pin_outputs(PWM_2, LPWM_2, RPWM_2);
+  movement_setup(PWM_2, LPWM_2, RPWM_2);
 
   // Motor - 3
-  pinMode(PWM_3, OUTPUT);
-  pinMode(LPWM_3, OUTPUT);
-  pinMode(RPWM_3, OUTPUT);
-
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, LOW);
-  digitalWrite(RPWM_3, LOW);
+  pin_outputs(PWM_3, LPWM_3, RPWM_3);
+  movement_setup(PWM_3, LPWM_3, RPWM_3);
 
   // Motor - 4
-  pinMode(PWM_4, OUTPUT);
-  pinMode(LPWM_4, OUTPUT);
-  pinMode(RPWM_4, OUTPUT);
-
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, LOW);
-  digitalWrite(RPWM_4, LOW);
+  pin_outputs(PWM_4, LPWM_4, RPWM_4);
+  movement_setup(PWM_4, LPWM_4, RPWM_4);
 
   Serial_BT.begin("Hamal");
 }
 
+// Hareket Fonksiyonları
+
 void moveForward() {
-  // MOTOR - 1 
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, LOW);
-  digitalWrite(RPWM_1, HIGH);
+  // MOTOR - 1
+  movement_cw(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, LOW);
-  digitalWrite(RPWM_2, HIGH);
+  movement_cw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, HIGH);
-  digitalWrite(RPWM_3, LOW);
+  movement_ccw(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, HIGH);
-  digitalWrite(RPWM_4, LOW);
-  
+  movement_ccw(PWM_4, LPWM_4, RPWM_4);
 }
 
 void moveBackward() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, HIGH);
-  digitalWrite(RPWM_1, LOW);
+  movement_ccw(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, HIGH);
-  digitalWrite(RPWM_2, LOW);
+  movement_ccw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, LOW);
-  digitalWrite(RPWM_3, HIGH);
+  movement_cw(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, LOW);
-  digitalWrite(RPWM_4, HIGH);  
+  movement_cw(PWM_4, LPWM_4, RPWM_4);
 }
 
 void moveRight() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, HIGH);
-  digitalWrite(RPWM_1, LOW);
+  movement_ccw(PWM_1, LPWM_1, RPWM_1);
 
-  // MOTOR - 2 
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, LOW);
-  digitalWrite(RPWM_2, HIGH);
+  // MOTOR - 2
+  movement_cw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, HIGH);
-  digitalWrite(RPWM_3, LOW);
+  movement_ccw(PWM_3, LPWM_3, RPWM_3);
 
-  // MOTOR - 4 
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, LOW);
-  digitalWrite(RPWM_4, HIGH);
+  // MOTOR - 4
+  movement_cw(PWM_4, LPWM_4, RPWM_4);
 }
 
 void moveLeft() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, LOW);
-  digitalWrite(RPWM_1, HIGH);
+  movement_cw(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, HIGH);
-  digitalWrite(RPWM_2, LOW);
+  movement_ccw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, LOW);
-  digitalWrite(RPWM_3, HIGH);
+  movement_cw(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, HIGH);
-  digitalWrite(RPWM_4, LOW);
+  movement_ccw(PWM_4, LPWM_4, RPWM_4);
 }
 
 void spinRight() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, LOW);
-  digitalWrite(RPWM_1, HIGH);
+  movement_cw(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, HIGH);
-  digitalWrite(RPWM_2, LOW);
+  movement_ccw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, HIGH);
-  digitalWrite(RPWM_3, LOW);
+  movement_ccw(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, LOW);
-  digitalWrite(RPWM_4, HIGH);
+  movement_cw(PWM_4, LPWM_4, RPWM_4);
 }
 
 void spinLeft() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, HIGH);
-  digitalWrite(RPWM_1, LOW);
+  movement_ccw(PWM_1, LPWM_1, RPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, LOW);
-  digitalWrite(RPWM_2, HIGH);
+  movement_cw(PWM_2, LPWM_2, RPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, LOW);
-  digitalWrite(RPWM_3, HIGH);
+  movement_cw(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, HIGH);
-  digitalWrite(RPWM_4, LOW);
+  movement_ccw(PWM_4, LPWM_4, LPWM_4);
 }
 
 void stopMotor() {
   // MOTOR - 1
-  digitalWrite(PWM_1, HIGH);
-  digitalWrite(LPWM_1, LOW);
-  digitalWrite(RPWM_1, LOW);
+  movement_stop(PWM_1, LPWM_1, LPWM_1);
 
   // MOTOR - 2
-  digitalWrite(PWM_2, HIGH);
-  digitalWrite(LPWM_2, LOW);
-  digitalWrite(RPWM_2, LOW);
+  movement_stop(PWM_2, LPWM_2, LPWM_2);
 
   // MOTOR - 3
-  digitalWrite(PWM_3, HIGH);
-  digitalWrite(LPWM_3, LOW);
-  digitalWrite(RPWM_3, LOW);
+  movement_stop(PWM_3, LPWM_3, RPWM_3);
 
   // MOTOR - 4
-  digitalWrite(PWM_4, HIGH);
-  digitalWrite(LPWM_4, LOW);
-  digitalWrite(RPWM_4, LOW);
-  
+  movement_stop(PWM_4, LPWM_4, RPWM_4);
 }
 
+void dance_1() {
+  moveLeft();
+  delay(1000);
+  moveRight();
+  delay(2000);
+  moveLeft();
+  delay(1000);
+  moveForward();
+  delay(1000);
+  moveBackward();
+  delay(2000);
+  moveForward();
+  delay(1000);
+}
+
+void dance_2() {
+  spinRight();
+  delay(500);
+  spinLeft();
+  delay(1000);
+  spinRight();
+  delay(500);
+  moveForward();
+  delay(1000);
+  moveBackward();
+  delay(1000);
+}
+
+// Kumandadan kontrol noktası.
 void loop() {
 
-  // Bluetooth bağlantısının kontrolü
+  // Bluetooth bağlantısının kontrolü.
   if (Serial_BT.available()) {
-    // Bluetooth dan gelen verinin okunması
-    data = Serial_BT.read();
-
-    // İleri yönlü
-    if (data == 'F') {
-      moveForward();
-    }
-    // Geri yönlü
-    if (data == 'B') {
-      moveBackward();
-    }
-
-    // Sola dönme
-    if (data == 'L'){
-      spinLeft();
-    }
-
-    // Sağa dönme
-    if (data == 'R'){
-      spinRight();
-    }
-    // Sağa gitme
-    if (data == 'C'){
-      moveRight();
-    }
     
-    // Sola gitme
-    if (data == 'S'){
-      moveLeft();
-    }
+  // Bluetooth dan gelen verinin okunması.
+    data = Serial_BT.read();
+    switch (data) {
+        // İleri Gitme
+      case 'F':
+        moveForward();
+        break;
 
-    // Dans - 1 
-    if (data == 'X'){
-      moveLeft();
-      delay(1000);
-      moveRight();
-      delay(2000);
-      moveLeft();
-      delay(1000);
-      moveForward();
-      delay(1000);
-      moveBackward();
-      delay(2000);
-      moveForward();
-      delay(1000);
-    }
+        // Geri Gitme
+      case 'B':
+        moveBackward();
+        break;
 
-    // Dans - 2
-    if (data == 'T'){
-      spinRight();
-      delay(500);
-      spinLeft();
-      delay(1000);
-      spinRight();
-      delay(500);
-      moveForward();
-      delay(1000);
-      moveBackward();
-      delay(1000);
-     }
+        // Sağa Dönme
+      case 'R':
+        spinRight();
+        break;
 
-    // Durdurma
-    if (data == '0') {
-      stopMotor();
+        // Sola Dönme
+      case 'L':
+        spinLeft();
+        break;
+
+        // Sağa Gitme
+      case 'C':
+        moveRight();
+        break;
+
+        // Sola Gitme
+      case 'S':
+        moveLeft();
+        break;
+
+        // Dance - 1
+      case 'X':
+        dance_1();
+        break;
+
+        // Dance - 2
+      case 'T':
+        dance_2();
+        break;
+
+        // Stop
+      default:
+        stopMotor();
+        break;
     }
   }
 }
+// Pinler için hazırlanan fonksiyon ve dönme yönlerini ayarlamayı sağlayan fonksiyonlar.
+void pin_outputs(int pwm, int lpwm, int rpwm) {
+  pinMode(pwm, OUTPUT);
+  pinMode(lpwm, OUTPUT);
+  pinMode(rpwm, OUTPUT);
+}
+
+void movement_setup(int pwm, int lpwm, int rpwm) {
+  digitalWrite(pwm, HIGH);
+  digitalWrite(lpwm, LOW);
+  digitalWrite(rpwm, LOW);
+}
+
+void movement_stop(int pwm, int lpwm, int rpwm) {
+  digitalWrite(pwm, LOW);
+  digitalWrite(lpwm, LOW);
+  digitalWrite(rpwm, LOW);
+}
+
+void movement_cw(int pwm, int lpwm, int rpwm) {
+  digitalWrite(pwm, HIGH);
+  digitalWrite(lpwm, LOW);
+  digitalWrite(rpwm, HIGH);
+}
+
+void movement_ccw(int pwm, int lpwm, int rpwm) {
+  digitalWrite(pwm, HIGH);
+  digitalWrite(lpwm, HIGH);
+  digitalWrite(rpwm, LOW);
+}  
