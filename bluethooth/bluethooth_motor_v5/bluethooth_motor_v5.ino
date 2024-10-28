@@ -62,6 +62,162 @@ void setup() {
   Serial_BT.begin("Hamal");
 }
 
+void moveForward() {
+  // MOTOR - 1 
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, LOW);
+  digitalWrite(RPWM_1, HIGH);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, LOW);
+  digitalWrite(RPWM_2, HIGH);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, HIGH);
+  digitalWrite(RPWM_3, LOW);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, HIGH);
+  digitalWrite(RPWM_4, LOW);
+  
+}
+
+void moveBackward() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, HIGH);
+  digitalWrite(RPWM_1, LOW);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, HIGH);
+  digitalWrite(RPWM_2, LOW);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, LOW);
+  digitalWrite(RPWM_3, HIGH);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, LOW);
+  digitalWrite(RPWM_4, HIGH);  
+}
+
+void moveRight() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, HIGH);
+  digitalWrite(RPWM_1, LOW);
+
+  // MOTOR - 2 
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, LOW);
+  digitalWrite(RPWM_2, HIGH);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, HIGH);
+  digitalWrite(RPWM_3, LOW);
+
+  // MOTOR - 4 
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, LOW);
+  digitalWrite(RPWM_4, HIGH);
+}
+
+void moveLeft() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, LOW);
+  digitalWrite(RPWM_1, HIGH);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, HIGH);
+  digitalWrite(RPWM_2, LOW);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, LOW);
+  digitalWrite(RPWM_3, HIGH);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, HIGH);
+  digitalWrite(RPWM_4, LOW);
+}
+
+void spinRight() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, LOW);
+  digitalWrite(RPWM_1, HIGH);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, HIGH);
+  digitalWrite(RPWM_2, LOW);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, HIGH);
+  digitalWrite(RPWM_3, LOW);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, LOW);
+  digitalWrite(RPWM_4, HIGH);
+}
+
+void spinLeft() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, HIGH);
+  digitalWrite(RPWM_1, LOW);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, LOW);
+  digitalWrite(RPWM_2, HIGH);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, LOW);
+  digitalWrite(RPWM_3, HIGH);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, HIGH);
+  digitalWrite(RPWM_4, LOW);
+}
+
+void stopMotor() {
+  // MOTOR - 1
+  digitalWrite(PWM_1, HIGH);
+  digitalWrite(LPWM_1, LOW);
+  digitalWrite(RPWM_1, LOW);
+
+  // MOTOR - 2
+  digitalWrite(PWM_2, HIGH);
+  digitalWrite(LPWM_2, LOW);
+  digitalWrite(RPWM_2, LOW);
+
+  // MOTOR - 3
+  digitalWrite(PWM_3, HIGH);
+  digitalWrite(LPWM_3, LOW);
+  digitalWrite(RPWM_3, LOW);
+
+  // MOTOR - 4
+  digitalWrite(PWM_4, HIGH);
+  digitalWrite(LPWM_4, LOW);
+  digitalWrite(RPWM_4, LOW);
+  
+}
+
 void loop() {
 
   // Bluetooth bağlantısının kontrolü
@@ -71,161 +227,65 @@ void loop() {
 
     // İleri yönlü
     if (data == 'F') {
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, LOW);
-      digitalWrite(RPWM_1, HIGH);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, LOW);
-      digitalWrite(RPWM_2, HIGH);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, HIGH);
-      digitalWrite(RPWM_3, LOW);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, HIGH);
-      digitalWrite(RPWM_4, LOW);
+      moveForward();
     }
     // Geri yönlü
     if (data == 'B') {
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, HIGH);
-      digitalWrite(RPWM_1, LOW);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, HIGH);
-      digitalWrite(RPWM_2, LOW);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, LOW);
-      digitalWrite(RPWM_3, HIGH);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, LOW);
-      digitalWrite(RPWM_4, HIGH);
+      moveBackward();
     }
 
     // Sola dönme
     if (data == 'L'){
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, HIGH);
-      digitalWrite(RPWM_1, LOW);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, LOW);
-      digitalWrite(RPWM_2, HIGH);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, LOW);
-      digitalWrite(RPWM_3, HIGH);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, HIGH);
-      digitalWrite(RPWM_4, LOW);
+      spinLeft();
     }
 
     // Sağa dönme
     if (data == 'R'){
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, LOW);
-      digitalWrite(RPWM_1, HIGH);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, HIGH);
-      digitalWrite(RPWM_2, LOW);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, HIGH);
-      digitalWrite(RPWM_3, LOW);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, LOW);
-      digitalWrite(RPWM_4, HIGH);
+      spinRight();
     }
     // Sağa gitme
-    if (data == 'S'){
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, LOW);
-      digitalWrite(RPWM_1, HIGH);
-
-      // MOTOR - 2 
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, LOW);
-      digitalWrite(RPWM_2, HIGH);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, HIGH);
-      digitalWrite(RPWM_3, LOW);
-
-      // MOTOR - 4 
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, HIGH);
-      digitalWrite(RPWM_4, LOW);
+    if (data == 'C'){
+      moveRight();
     }
     
     // Sola gitme
-    if (data == 'C'){
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, HIGH);
-      digitalWrite(RPWM_1, LOW);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, HIGH);
-      digitalWrite(RPWM_2, LOW);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, LOW);
-      digitalWrite(RPWM_3, HIGH);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, LOW);
-      digitalWrite(RPWM_4, HIGH);
+    if (data == 'S'){
+      moveLeft();
     }
+
+    // Dans - 1 
+    if (data == 'X'){
+      moveLeft();
+      delay(1000);
+      moveRight();
+      delay(2000);
+      moveLeft();
+      delay(1000);
+      moveForward();
+      delay(1000);
+      moveBackward();
+      delay(2000);
+      moveForward();
+      delay(1000);
+    }
+
+    // Dans - 2
+    if (data == 'T'){
+      spinRight();
+      delay(500);
+      spinLeft();
+      delay(1000);
+      spinRight();
+      delay(500);
+      moveForward();
+      delay(1000);
+      moveBackward();
+      delay(1000);
+     }
 
     // Durdurma
     if (data == '0') {
-      // MOTOR - 1
-      digitalWrite(PWM_1, HIGH);
-      digitalWrite(LPWM_1, LOW);
-      digitalWrite(RPWM_1, LOW);
-
-      // MOTOR - 2
-      digitalWrite(PWM_2, HIGH);
-      digitalWrite(LPWM_2, LOW);
-      digitalWrite(RPWM_2, LOW);
-
-      // MOTOR - 3
-      digitalWrite(PWM_3, HIGH);
-      digitalWrite(LPWM_3, LOW);
-      digitalWrite(RPWM_3, LOW);
-
-      // MOTOR - 4
-      digitalWrite(PWM_4, HIGH);
-      digitalWrite(LPWM_4, LOW);
-      digitalWrite(RPWM_4, LOW);
+      stopMotor();
     }
   }
 }
