@@ -5,15 +5,15 @@
 
 basla:
   ldi r16,0xff
-  out DDRD,r16      
+  out DDRB,r16      
   clr r16
-  out PORTD,r16
+  out PORTB,r16
 
 ana:
   ldi r17,0b00000111   ; 3 LED yanık başla
 
 sag:
-  out PORTD,r17
+  out PORTB,r17
   rcall gecikme
   lsl r17
   cpi r17,0b11100000   ; en sağ sınır
@@ -22,7 +22,7 @@ sag:
   ldi r17,0b11100000
 
 sol:
-  out PORTD,r17
+  out PORTB,r17
   rcall gecikme
   lsr r17
   cpi r17,0b00000111   ; en sol sınır
