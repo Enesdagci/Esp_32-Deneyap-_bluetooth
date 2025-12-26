@@ -1,0 +1,42 @@
+.include "m328pdef.inc"
+
+.org 0x0000
+  rjmp basla
+
+basla:
+  ldi r16,0xff
+  out DDRD,r16      
+  clr r16
+  out PORTD,r16
+
+ana:
+  ldi r17,0b00000111   ; 3 LED yanık başla
+
+sag:
+  out PORTD,r17
+  rcall gecikme
+  lsl r17
+  cpi r17,0b11100000   ; en sağ sınır
+  brne sag
+
+  ldi r17,0b11100000
+
+sol:
+  out PORTD,r17
+  rcall gecikme
+  lsr r17
+  cpi r17,0b00000111   ; en sol sınır
+  brne sol
+
+  rjmp ana
+
+gecikme:
+  ldi r18,255
+G1:
+  ldi r19,255
+G2:
+  dec r19
+  brne G2
+  dec r18
+  brne G1
+  ret
